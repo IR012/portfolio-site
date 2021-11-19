@@ -45,8 +45,8 @@
 
                         if ($form_complete) {
                             echo "\nForm complete";
-                            require __DIR__.'/contact_info.php';
-                            echo "\nAfter require";
+                            //require __DIR__.'/contact_info.php';  //<-- Move out of if{} block
+                            echo "\nAfter first require";
                             //Create an instance; passing `true` enables exceptions
                             $mail = new PHPMailer(true);
                             echo "\nAfter new PHPMailer object";
@@ -95,7 +95,8 @@
                                         $mail_res->addAddress($email, $username);                    //Add a recipient //Name is optional
                                         
                                         //Content
-                                        require __DIR__.'/email_response_template.php';
+                                        //require __DIR__.'/email_response_template.php'; //<-- Move out of if{} block
+                                        echo "\nAfter second require";
 
                                         $mail_res->isHTML(true);    //Set email format to HTML
                                         $mail_res->Subject = 'Automated confirmation: Your message has been received';

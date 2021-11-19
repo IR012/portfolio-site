@@ -24,7 +24,7 @@
         $myPass = $_SERVER["MY_PASS"];
         $myPhone = $_SERVER["MY_PHONE"];
 
-        require_once __DIR__.'/src/email_response_template.php';
+        //require_once __DIR__.'/src/email_response_template.php';
     ?>
     <?php require_once __DIR__.'/src/functions.php'; ?>
     <?php require_once __DIR__.'/src/notification.php'; ?>

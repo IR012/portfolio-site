@@ -21,7 +21,7 @@
                         $error_field = array("username"=>false, "email"=>false, "message"=>false);
                         $form_complete = false;
 
-                        require_once __DIR__.'/email_response_template.php';
+                        //require_once __DIR__.'/email_response_template.php';
 
                         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
@@ -102,8 +102,10 @@
 
                                         $mail_res->isHTML(true);    //Set email format to HTML
                                         $mail_res->Subject = 'Automated confirmation: Your message has been received';
-                                        $mail_res->Body    = $email_body_HTML.$email_signature_HTML.'<p style="color:red;">'.wordwrap($message, 70, "\r\n").'</p>';
-                                        $mail_res->AltBody = $email_body_alt."\n\n".wordwrap($message, 70, "\r\n");
+                                        //$mail_res->Body    = $email_body_HTML.$email_signature_HTML.'<p style="color:red;">'.wordwrap($message, 70, "\r\n").'</p>';
+                                        $mail_res->Body    = "Body";
+                                        //$mail_res->AltBody = $email_body_alt."\n\n".wordwrap($message, 70, "\r\n");
+                                        $mail_res->AltBody    = "AltBody";
                                         echo "\nBefore second send";
                                         $mail_res->send();
                                         echo "\nEnd of second try";

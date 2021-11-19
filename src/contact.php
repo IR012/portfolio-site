@@ -2,9 +2,16 @@
         <section id="contact">
             <div class="container">
                 <div class="title"><h1>Contact Me</h1></div>
-                <?php echo $_SERVER["PHP_SELF"] ?>
+                <?php 
+                    echo clean_input($_SERVER["PHP_SELF"]); 
+                    echo $_SERVER["REQUEST_METHOD"];
+                    //print_r($_SERVER);
+                ?>
                 <form action="<?= preg_replace("/index.php/", "", clean_input($_SERVER["PHP_SELF"])) . "#contact"; ?>" method="post">
                     <?php 
+
+                        echo $_SERVER["REQUEST_METHOD"];
+                        echo $_POST["submit"];
                         use PHPMailer\PHPMailer\PHPMailer;
                         use PHPMailer\PHPMailer\SMTP;
                         use PHPMailer\PHPMailer\Exception;
@@ -100,7 +107,8 @@
 
                             } catch (Exception $e) {
                                 $email_status_message = '<p style="font-family: Arial, Helvetica, sans-serif;font-size: 1.5rem;color: green;padding-top: 5px;">"Email delivery error: Message could not be sent."</p>'; 
-                                echo '<script>console.log(Message could not be sent. Mailer Error: {'.$mail->ErrorInfo.'})<script>';
+                                //echo '<script>console.log(Message could not be sent. Mailer Error: {'.$mail->ErrorInfo.'})<script>';
+                                $mail->ErrorInfo;
                             }
                                 
                         }

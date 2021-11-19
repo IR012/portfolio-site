@@ -80,19 +80,19 @@
                     <!-- Slides -->
                         <div class="swiper-slide">
                             <div class="slide-content">
-                                <img src="../res/image02.jpg" alt="" >
+                                <img src="res/image02.jpg" alt="" >
                                 <p>Java</p>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="slide-content">
-                                <img src="../res/image02.jpg" alt="" >
+                                <img src="res/image02.jpg" alt="" >
                                 <p>Java</p>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="slide-content">
-                                <img src="../res/image02.jpg" alt="" >
+                                <img src="res/image02.jpg" alt="" >
                                 <p>Java</p>
                             </div>
                         </div>

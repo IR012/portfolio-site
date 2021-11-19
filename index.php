@@ -17,14 +17,12 @@
     <?php 
         require_once __DIR__.'/vendor/autoload.php'; //Load Composer's autoloader 
         //Load environment variables
-        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+        /*$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
         $dotenv->load();
-        //require_once __DIR__.'/src/contact_info.php';
         $myEmail = $_SERVER["MY_EMAIL"];
         $myPass = $_SERVER["MY_PASS"];
-        $myPhone = $_SERVER["MY_PHONE"];
-
-        //require_once __DIR__.'/src/email_response_template.php';
+        $myPhone = $_SERVER["MY_PHONE"];*/
+        //require_once __DIR__.'/src/contact_info.php';
     ?>
     <?php require_once __DIR__.'/src/functions.php'; ?>
     <?php require_once __DIR__.'/src/notification.php'; ?>

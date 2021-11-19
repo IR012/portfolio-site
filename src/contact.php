@@ -21,8 +21,6 @@
                         $error_field = array("username"=>false, "email"=>false, "message"=>false);
                         $form_complete = false;
 
-                        //require_once __DIR__.'/email_response_template.php';
-
                         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
                             $username = clean_input($_POST["username"]);
@@ -47,7 +45,7 @@
 
                         if ($form_complete) {
                             echo "\nForm complete";
-                            //require __DIR__.'/contact_info.php';  //<-- Move out of if{} block
+                            require __DIR__.'/contact_info.php';
                             echo "\nAfter first require";
                             //Create an instance; passing `true` enables exceptions
                             $mail = new PHPMailer(true);
@@ -97,15 +95,13 @@
                                         $mail_res->addAddress($email, $username);                    //Add a recipient //Name is optional
                                         
                                         //Content
-                                        //require __DIR__.'/email_response_template.php'; //<-- Move out of if{} block
+                                        require __DIR__.'/email_response_template.php';
                                         echo "\nAfter second require";
 
                                         $mail_res->isHTML(true);    //Set email format to HTML
                                         $mail_res->Subject = 'Automated confirmation: Your message has been received';
-                                        //$mail_res->Body    = $email_body_HTML.$email_signature_HTML.'<p style="color:red;">'.wordwrap($message, 70, "\r\n").'</p>';
-                                        $mail_res->Body    = "Body";
-                                        //$mail_res->AltBody = $email_body_alt."\n\n".wordwrap($message, 70, "\r\n");
-                                        $mail_res->AltBody    = "AltBody";
+                                        $mail_res->Body    = $email_body_HTML.$email_signature_HTML.'<p style="color:red;">'.wordwrap($message, 70, "\r\n").'</p>';
+                                        $mail_res->AltBody = $email_body_alt."\n\n".wordwrap($message, 70, "\r\n");
                                         echo "\nBefore second send";
                                         $mail_res->send();
                                         echo "\nEnd of second try";
@@ -123,7 +119,7 @@
                             } catch (Exception $e) {
                                 echo "\nIn second catch";
                                 $email_status_message = '<p style="font-family: Arial, Helvetica, sans-serif;font-size: 1.5rem;color: green;padding-top: 5px;">"Email delivery error: Message could not be sent."</p>'; 
-                                //echo '<script>console.log(Message could not be sent. Mailer Error: {'.$mail->ErrorInfo.'})<script>';
+                                echo '<script>console.log(Message could not be sent. Mailer Error: {'.$mail->ErrorInfo.'})<script>';
                                 $mail->ErrorInfo;
                             }
                                 

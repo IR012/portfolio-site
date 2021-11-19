@@ -21,6 +21,8 @@
                         $error_field = array("username"=>false, "email"=>false, "message"=>false);
                         $form_complete = false;
 
+                        require_once __DIR__.'/email_response_template.php';
+
                         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
                             $username = clean_input($_POST["username"]);

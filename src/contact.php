@@ -46,8 +46,10 @@
                         if ($form_complete) {
                             echo "\nForm complete";
                             require __DIR__.'/contact_info.php';
+                            echo "\nAfter require";
                             //Create an instance; passing `true` enables exceptions
-                            $mail = new PHPMailer(true);     
+                            $mail = new PHPMailer(true);
+                            echo "\nAfter new PHPMailer object";
                             try {
                                 echo "\nIn first try";
                                 //Server settings

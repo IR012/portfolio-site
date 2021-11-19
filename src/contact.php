@@ -4,6 +4,7 @@
                 <div class="title"><h1>Contact Me</h1></div>
                 <?php 
                     echo clean_input($_SERVER["PHP_SELF"]); 
+                    echo isset($_SERVER["REQUEST_METHOD"]);
                     echo $_SERVER["REQUEST_METHOD"];
                     //print_r($_SERVER);
                 ?>

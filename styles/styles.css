@@ -66,6 +66,14 @@ section {
     padding: 2rem;
 }
 
+.bg-primary .title {
+    color: var(--darkOne);
+}
+
+.bg-secondary .title {
+    color: var(--lightPrimary);
+}
+
 .bg-primary {
     background-color: white;
 }
@@ -504,7 +512,7 @@ nav ul a:active {
 #portfolio {
     margin: 0;
     padding: 2rem 0 0 0;
-    background-color: var(--lightPrimar);
+    background-color: var(--lightPrimary);
 }
 
 #portfolio .portfolio-grid {

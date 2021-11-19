@@ -2,6 +2,7 @@
         <section id="contact">
             <div class="container">
                 <div class="title"><h1>Contact Me</h1></div>
+                <?php echo $_SERVER["PHP_SELF"] ?>
                 <form action="<?= preg_replace("/index.php/", "", clean_input($_SERVER["PHP_SELF"])) . "#contact"; ?>" method="post">
                     <?php 
                         use PHPMailer\PHPMailer\PHPMailer;

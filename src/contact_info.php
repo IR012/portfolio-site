@@ -3,7 +3,7 @@
     echo "\n\nBefore Dotenv\Dotenv::createImmutable(...)";
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__."/..");
     echo "\n\nBefore dotenvload->load";
-    $dotenv->load();
+    $dotenv->safeLoad();
     echo "\n\nAfter dotenvload->load";
 
     $myEmail = $_ENV["MY_EMAIL"];

@@ -2,17 +2,8 @@
         <section id="contact">
             <div class="container">
                 <div class="title"><h1>Contact Me</h1></div>
-                <?php 
-                    echo clean_input($_SERVER["PHP_SELF"]); 
-                    echo isset($_SERVER["REQUEST_METHOD"]);
-                    echo $_SERVER["REQUEST_METHOD"];
-                    //print_r($_SERVER);
-                ?>
                 <form action="<?= preg_replace("/index.php/", "", clean_input($_SERVER["PHP_SELF"])) . "#contact"; ?>" method="post">
                     <?php 
-
-                        echo $_SERVER["REQUEST_METHOD"];
-                        echo $_POST["submit"];
                         use PHPMailer\PHPMailer\PHPMailer;
                         use PHPMailer\PHPMailer\SMTP;
                         use PHPMailer\PHPMailer\Exception;
@@ -44,16 +35,12 @@
                         }	
 
                         if ($form_complete) {
-                            echo "\nForm complete";
                             require __DIR__.'/contact_info.php';
-                            echo "\nAfter first require";
                             //Create an instance; passing `true` enables exceptions
                             $mail = new PHPMailer(true);
-                            echo "\nAfter new PHPMailer object";
                             try {
-                                echo "\nIn first try";
                                 //Server settings
-                                $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+                                //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
                                 $mail->isSMTP();                                              //Send using SMTP
                                 $mail->Host       = 'smtp.gmail.com';                         //Set the SMTP server to send through
                                 $mail->SMTPAuth   = true;                                     //Enable SMTP authentication
@@ -71,17 +58,15 @@
                                 $mail->Subject = 'Website contact form message from:'.$username.' <'.$email.'>';
                                 $mail->Body    = '<p style="color:blue;">From: '.$email.'</p><br/><p>'.wordwrap($message, 70, "\r\n").'</p>';
                                 $mail->AltBody = 'From: '.$email.'\n\n'.wordwrap($message, 70, "\r\n");
-                                echo "\nBefore send";
+
                                 if ($mail->send()) {
-                                    echo "\nAfter send in if";
                                     $email_status_message = '<p style="font-family: Arial, Helvetica, sans-serif;font-size: 1.5rem;color: green;padding-top: 5px;">Your message has been sent, I will be in touch as soon as possible.</p>';
                                     //Set up confirmation email
                                     //Create an instance; passing `true` enables exceptions
                                     $mail_res = new PHPMailer(true);
                                     try {
-                                        echo "\nIn second try";
                                         //Server settings
-                                        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+                                        //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
                                         $mail_res->isSMTP();                                          //Send using SMTP
                                         $mail_res->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
                                         $mail_res->SMTPAuth   = true;                                 //Enable SMTP authentication
@@ -96,18 +81,14 @@
                                         
                                         //Content
                                         require __DIR__.'/email_response_template.php';
-                                        echo "\nAfter second require";
 
                                         $mail_res->isHTML(true);    //Set email format to HTML
                                         $mail_res->Subject = 'Automated confirmation: Your message has been received';
                                         $mail_res->Body    = $email_body_HTML.$email_signature_HTML.'<p style="color:red;">'.wordwrap($message, 70, "\r\n").'</p>';
                                         $mail_res->AltBody = $email_body_alt."\n\n".wordwrap($message, 70, "\r\n");
-                                        echo "\nBefore second send";
                                         $mail_res->send();
-                                        echo "\nEnd of second try";
                                         }
                                     catch (Exception $e) {
-                                        echo "\nIn second catch";
                                         echo '<script>console.log(Confirmation of message receipt could not be sent. Mailer Error: {'.$mail_res->ErrorInfo.'})<script>'; 
                                     }
                                 }
@@ -115,39 +96,31 @@
                                 $username = "";
                                 $email = "";
                                 $message = "";
-                                echo "\nEnd of first try";
                             } catch (Exception $e) {
-                                echo "\nIn second catch";
                                 $email_status_message = '<p style="font-family: Arial, Helvetica, sans-serif;font-size: 1.5rem;color: green;padding-top: 5px;">"Email delivery error: Message could not be sent."</p>'; 
                                 echo '<script>console.log(Message could not be sent. Mailer Error: {'.$mail->ErrorInfo.'})<script>';
                                 $mail->ErrorInfo;
                             }
                                 
                         }
-                        echo "\nBefore form";
                     ?>
-                    
                     <label for="fname">Name</label>
                     <?php 
-                        echo "\nUsername";
 			            if ($error_field["username"]) {input_error("username");}; 
 		            ?>
                     <input type="text" id="fname" name="username" placeholder="Name" value="<?= $username ?? "" ?>">
                     <label for="email">E-mail</label>
                     <?php 
-                        echo "\nEmail";
 			            if ($error_field["email"]) {input_error("email");}; 
 		            ?>
                     <input type="email" id="email" name="email" placeholder="email@example.com" value="<?= $email ?? "" ?>">
                     <label for="message">Message</label>
                     <?php
-                        echo "\nMessage"; 
 			            if ($error_field["message"]) {input_error("message");}; 
 		            ?>
                     <textarea id="message" name="message" placeholder="Type your message here" value="<?= $message ?? "" ?>"><?= $message ?? "" ?></textarea>
                     <input type="hidden" id="notification-close" name="notification-close" value="<?= $notificationClose ?? "" ?>">
                     <input type="submit" id="submit" name="submit">
-                    <?= "\nBefore status message" ?>
                     <?= isset($email_status_message) ? $email_status_message : null ?>
                 </form>
             </div>

@@ -15,23 +15,19 @@
 </head>
 <body>
     <?php 
-        require_once __DIR__.'/vendor/autoload.php'; //Load Composer's autoloader 
-        //Load environment variables
-        /*$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-        $dotenv->load();
-        $myEmail = $_SERVER["MY_EMAIL"];
-        $myPass = $_SERVER["MY_PASS"];
-        $myPhone = $_SERVER["MY_PHONE"];*/
-        //require_once __DIR__.'/src/contact_info.php';
+        //Load Composer's autoloader
+        require_once __DIR__.'/vendor/autoload.php';  
+        
+        //Include files
+        require_once __DIR__.'/src/functions.php';
+        require_once __DIR__.'/src/notification.php';
+        require_once __DIR__.'/src/nav.php';
+        require_once __DIR__.'/src/profile.php';
+        require_once __DIR__.'/src/about.php';
+        require_once __DIR__.'/src/portfolio.php';
+        require_once __DIR__.'/src/contact.php';
+        require_once __DIR__.'/src/footer.php';
     ?>
-    <?php require_once __DIR__.'/src/functions.php'; ?>
-    <?php require_once __DIR__.'/src/notification.php'; ?>
-    <?php require_once __DIR__.'/src/nav.php'; ?>
-    <?php require_once __DIR__.'/src/profile.php'; ?>
-    <?php require_once __DIR__.'/src/about.php'; ?>
-    <?php require_once __DIR__.'/src/portfolio.php'; ?>
-    <?php require_once __DIR__.'/src/contact.php'; ?>
-    <?php require_once __DIR__.'/src/footer.php'; ?>
     <script src="scripts/app.js"></script>
 </body>
 </html>
